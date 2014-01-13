@@ -1,3 +1,8 @@
+<?php
+	require('utils.php');
+	login(); 
+?>
+
 <html>
 <head>
     <title>View profile</title>
@@ -6,8 +11,6 @@
 	<div>
 		<p>View profile</p>
 		<?php
-				require('utils.php');
-				
 				@ $personid = $_GET["id"];
 				if (!isset($personid))
 				{

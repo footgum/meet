@@ -1,3 +1,8 @@
+<?php
+	require('utils.php');
+	login(); 
+?>
+
 <html>
 <head>
 <title>All persons</title>
@@ -5,7 +10,9 @@
 <link href="meet.css" rel="stylesheet"/>
 </head>
 <body>
-	<a href="register.html">Register new person</a>
+	<a href="register.php">Register new person</a><br/>
+	<a href="meetingList.php">Meetings list</a><br/>
+	<a href="meetingInsert.php">Create meeting</a>
 	
 	<table class="table table-hover">
 		<thead>
@@ -19,8 +26,6 @@
 		</thead>
 		<tbody>
 			<?php 
-				require('utils.php');
-				
 				@ $db = connectDB();
 				if (mysqli_connect_errno()) 
 				{

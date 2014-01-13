@@ -1,31 +1,47 @@
+<?php
+	require('utils.php');
+	login(); 
+?>
+
 <html>
 	<head>
-		<title>Registratrion</title>
+		<title>New meeting</title>
 	</head>
 	<body>
 		<form method="post" onsubmit="sendRequest(); return false">
-			<p>New client registration:</p>
-			<p>First name: <input type="text" id="firstName" name="firstName" value="" /><br />
-			Last name: <input type="text" id="lastName" name="lastName" value="" /><br />
-			Income: <input type="text" id="income" name="income" value="" /><br />
-			E-mail: <input type="text" id="mail" name="mail" value="" /><br /></p>
-			<p><input id="registerButton" type="submit" value="Create account"/></p>
+			<p>New meeting</p>
+			<p>Meeting theme: <input type="text" id="theme" name="theme" value="" /><br />
+			City: <input type="text" id="city" name="city" value="" /><br />
+			Address: <input type="text" id="address" name="address" value="" /><br />
+			Date: <input type="text" id="startDate" name="startDate" value="" /><br />
+			Max participants: <input type="text" id="maxParticipants" name="maxParticipants" value="" /><br /></p>
+			<input id="submitButton" type="submit" value="Create meeting"/>
+			<input id="cancelButton" type="button" value="Cancel"/>
 		</form>
 		<div id="divStatus"></div>
 		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script>
+			$(document).ready(function() 
+			{
+				$('#cancelButton').click(function(event)
+				{
+					event.preventDefault();
+					window.location = 'personList.php';
+				});
+			});
+			
 			function sendRequest() 
 			{
 	            var oForm = document.forms[0];
 	            var sBody = getRequestBody(oForm);
-				$.post('register.php', sBody,
+				$.post('meetingInsertAction.php', sBody,
 				function(response)
 				{
 					var result = $.parseJSON(response);
 					if (result.status == 'ok')
 					{
-						window.location = 'profileView.php?id=' + result.id;
+						window.location = 'meetingView.php?id=' + result.id;
 					}
 					else
 					{
@@ -43,7 +59,7 @@
 	                sParam += "=";
 	                sParam += encodeURIComponent(oForm.elements[i].value);
 	                aParams.push(sParam);
-	            } 
+	            }
 	            return aParams.join("&");        
 	        }
 		</script>
