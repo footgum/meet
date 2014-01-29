@@ -14,7 +14,7 @@
 
 
     $sql = "insert into person(firstname, lastname, income, mail, login, password) ".
-            "values ('$firstName','$lastName','$income','$mail', '$login', '$password')";
+            "values ('$firstName','$lastName','$income','$mail', '$login', sha1('$password'))";
 			
 	require('utils.php');
 	@ $db = connectDB();
